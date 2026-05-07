@@ -1,0 +1,67 @@
+%%{init: {
+  "theme": "base",
+  "themeVariables": {
+    "background": "#0F1117",
+    "primaryColor": "#1E2130",
+    "primaryTextColor": "#F1F5F9",
+    "primaryBorderColor": "#A855F7",
+    "secondaryColor": "#1A1F35",
+    "tertiaryColor": "#1A1F35",
+    "lineColor": "#CBD5E1",
+    "fontSize": "14px",
+    "fontFamily": "ui-monospace, SFMono-Regular, Menlo, monospace",
+    "actorBkg": "#1E2130",
+    "actorBorder": "#A855F7",
+    "actorTextColor": "#F1F5F9",
+    "actorLineColor": "#2D3250",
+    "noteBkgColor": "#1A1F35",
+    "noteTextColor": "#94A3B8",
+    "noteBorderColor": "#2D3250",
+    "activationBkgColor": "#A855F7",
+    "activationBorderColor": "#A855F7",
+    "sequenceNumberColor": "#F1F5F9",
+    "labelBoxBkgColor": "#1E2130",
+    "labelBoxBorderColor": "#2D3250",
+    "labelTextColor": "#F1F5F9",
+    "signalColor": "#CBD5E1",
+    "signalTextColor": "#F1F5F9",
+    "loopTextColor": "#94A3B8",
+    "dividerTextColor": "#94A3B8"
+  }
+}}%%
+sequenceDiagram
+    autonumber
+    participant U  as 👤 User
+    participant O  as 🎯 project-orchestrator
+    participant E  as ⚙️ data-engineer
+    participant A  as 📊 data-analyst-eda
+    participant M  as 🤖 ml-model-scientist
+    participant Q  as ✍️ technical-writer-qa
+
+    U  ->>+ O : raw data + analysis goals
+
+    rect rgb(34, 197, 94, 0.08)
+        Note over O,E: Phase 1 · Data Preparation
+        O  ->>+ E : delegate — clean & validate data
+        E  -->>- O : cleaned_data.parquet · processing logs
+    end
+
+    rect rgb(245, 158, 11, 0.08)
+        Note over O,A: Phase 2 · EDA & Insights
+        O  ->>+ A : delegate — exploratory analysis
+        A  -->>- O : eda_report.ipynb · figures/*.png
+    end
+
+    rect rgb(239, 68, 68, 0.08)
+        Note over O,M: Phase 3 · Modeling & Prediction
+        O  ->>+ M : delegate — build predictive models
+        M  -->>- O : model_results.pkl · feature_importance.csv
+    end
+
+    rect rgb(6, 182, 212, 0.08)
+        Note over O,Q: Phase 4 · Integration & Delivery
+        O  ->>+ Q : delegate — consolidate & write report
+        Q  -->>- O : final_report.md · executable.ipynb
+    end
+
+    O  -->>- U : final deliverables

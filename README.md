@@ -27,5 +27,19 @@ Build predictive models to identify which passengers survived the Titanic disast
 - `03_reports/final_report.md` — Comprehensive analysis report
 - `01_notebooks/final/executable_titanic_analysis.ipynb` — End-to-end executable notebook
 
+## Multi-Agent Pipeline Architecture
+
+The analysis was produced by a sequential multi-agent pipeline orchestrated by `project-orchestrator`.
+
+![Multi-Agent Collaboration Workflow](03_reports/figures/agent_collaboration_diagram.png)
+
+| Agent | Role | Key Output |
+|---|---|---|
+| **project-orchestrator** | Plans the pipeline and delegates all tasks | Task briefs, coordination |
+| **data-engineer** | Cleans raw data and engineers features | `cleaned_data.parquet` |
+| **data-analyst-eda** | Exploratory analysis, statistics, visualisations | `eda_report.ipynb`, charts |
+| **ml-model-scientist** | Trains models, identifies key parameters | `model_results.pkl`, feature importance |
+| **technical-writer-qa** | Integrates all outputs, final QA | `final_report.md`, `executable.ipynb` |
+
 ## Date
 2026-04-26
